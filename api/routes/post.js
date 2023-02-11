@@ -1,7 +1,7 @@
 const app = require("../../app");
 const { getProcessedData, getCalculation } = require("../../utils/routes/post");
 
-app.post("/calculate", (req, res) => {
+app.post("/api/calculate", (req, res) => {
   const weight = req.body.weight;
   const names = req.body.names;
   const costs = req.body.costs;
