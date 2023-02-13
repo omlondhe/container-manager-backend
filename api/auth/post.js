@@ -1,4 +1,5 @@
 const app = require("../../app");
+const jwt = require("jsonwebtoken");
 const User = require("../../db/models/user.model");
 
 // signup
@@ -44,8 +45,18 @@ app.post("/api/auth/login", async (req, res) => {
   });
 
   if (user) {
+    const token = jwt.sign(
+      {
+        firstName: user.firstName,
+        middleName: user.middleName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+      },
+      "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*payload"
+    );
     res.status(200).send({
-      user,
+      user: token,
       message: "Authentication successful!",
     });
   } else {
