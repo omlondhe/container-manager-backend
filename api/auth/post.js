@@ -34,6 +34,16 @@ app.post("/api/auth/signup", async (req, res) => {
   }
 });
 
+app.post("/api/auth/check-if-email-exist", async (req, res) => {
+  const email = req.body.email;
+
+  const user = await User.findOne({
+    email,
+  });
+
+  res.status(200).send({ emailExist: user !== null });
+});
+
 // login
 app.post("/api/auth/login", async (req, res) => {
   const email = req.body.email;
@@ -57,11 +67,10 @@ app.post("/api/auth/login", async (req, res) => {
     );
     res.status(200).send({
       user: token,
-      message: "Authentication successful!",
     });
   } else {
     res.status(400).send({
-      message: "User not found!",
+      message: "Wrong password!",
     });
   }
 });
