@@ -133,9 +133,7 @@ app.post("/api/calculate", async (req, res) => {
     costsNotToTake,
     weightsNotToTake,
     requestedWeightCapacity: weight,
-    requestedNames: names,
-    requestedCosts: costs,
-    requestedWeights: weights,
+    requestedData: getProcessedData(names.length, costs, names, weights),
     dataToTake: getProcessedData(
       namesToTake.length,
       costsToTake,
@@ -150,18 +148,6 @@ app.post("/api/calculate", async (req, res) => {
     ),
     by: decoded.email,
   };
-
-  try {
-    const response = await axios.post(
-      "http://127.0.0.1:3000/api/save-calculation",
-      {
-        responseData,
-      }
-    );
-  } catch (error) {
-    res.status(400).send({ error: "Data not saved to the database!" });
-    return;
-  }
 
   res.status(200).send(responseData);
 });
