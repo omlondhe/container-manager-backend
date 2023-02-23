@@ -153,6 +153,33 @@ app.post("/api/calculate", async (req, res) => {
 });
 
 app.post(`/api/save-calculation`, async (req, res) => {
+  const token = req.body.token;
+  const decoded = jwt.verify(
+    token,
+    "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*payload"
+  );
+
+  if (!decoded.email) {
+    res.status(400).send({ error: "User is not authorised!" });
+    return;
+  }
+
+  try {
+    const response = await axios.post(
+      "http://127.0.0.1:3000/api/auth/check-if-email-exist",
+      {
+        email: decoded.email,
+      }
+    );
+    if (!response.data.emailExist) {
+      res.status(400).send({ error: "User is not authorised!" });
+      return;
+    }
+  } catch (error) {
+    res.status(400).send({ error: "User is not authorised!" });
+    return;
+  }
+
   const responseData = req.body.responseData;
   try {
     await CalculationModel.create(responseData);
