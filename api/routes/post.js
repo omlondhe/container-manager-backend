@@ -8,7 +8,7 @@ app.post("/api/calculate", async (req, res) => {
   const token = req.body.token;
   const decoded = jwt.verify(
     token,
-    "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*payload"
+    "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*user"
   );
 
   if (!decoded.email) {
@@ -156,7 +156,7 @@ app.post(`/api/save-calculation`, async (req, res) => {
   const token = req.body.token;
   const decoded = jwt.verify(
     token,
-    "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*payload"
+    "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*user"
   );
 
   if (!decoded.email) {
