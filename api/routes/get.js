@@ -4,12 +4,12 @@ const CalculationModel = require("../../db/models/calculation.model");
 const { default: mongoose } = require("mongoose");
 
 // path to check of the site is working
-app.get("/", (_, res) => {
-  res.status(200).send({
-    status: 200,
-    message: "Up and running!",
-  });
-});
+// app.get("/", (_, res) => {
+//   res.status(200).send({
+//     status: 200,
+//     message: "Up and running!",
+//   });
+// });
 
 app.get("/api/get-calculations", async (req, res) => {
   const email = req.query.email;
