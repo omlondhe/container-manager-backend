@@ -15,12 +15,9 @@ app.get("/api/get-calculations", async (req, res) => {
   const email = req.query.email;
 
   try {
-    const response = await axios.post(
-      "http://127.0.0.1:3000/api/auth/check-if-email-exist",
-      {
-        email: email,
-      }
-    );
+    const response = await axios.post("/api/auth/check-if-email-exist", {
+      email: email,
+    });
     if (!response.data.emailExist) {
       res.status(400).send({ error: "User is not authorised!" });
       return;

@@ -17,12 +17,9 @@ app.post("/api/calculate", async (req, res) => {
   }
 
   try {
-    const response = await axios.post(
-      "http://127.0.0.1:3000/api/auth/check-if-email-exist",
-      {
-        email: decoded.email,
-      }
-    );
+    const response = await axios.post("/api/auth/check-if-email-exist", {
+      email: decoded.email,
+    });
     if (!response.data.emailExist) {
       res.status(400).send({ error: "User is not authorised!" });
       return;
@@ -165,12 +162,9 @@ app.post(`/api/save-calculation`, async (req, res) => {
   }
 
   try {
-    const response = await axios.post(
-      "http://127.0.0.1:3000/api/auth/check-if-email-exist",
-      {
-        email: decoded.email,
-      }
-    );
+    const response = await axios.post("/api/auth/check-if-email-exist", {
+      email: decoded.email,
+    });
     if (!response.data.emailExist) {
       res.status(400).send({ error: "User is not authorised!" });
       return;
