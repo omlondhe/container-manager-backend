@@ -3,6 +3,7 @@ const app = require("../../app");
 const { getProcessedData, getCalculation } = require("../../utils/routes/post");
 const { default: axios } = require("axios");
 const CalculationModel = require("../../db/models/calculation.model");
+const User = require("../../db/models/user.model");
 
 app.post("/api/calculate", async (req, res) => {
   const token = req.body.token;
@@ -10,17 +11,18 @@ app.post("/api/calculate", async (req, res) => {
     token,
     "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*user"
   );
-
   if (!decoded.email) {
     res.status(400).send({ error: "User is not authorised!" });
     return;
   }
 
   try {
-    const response = await axios.post("/api/auth/check-if-email-exist", {
-      email: decoded.email,
+    const email = decoded.email;
+    const user = await User.findOne({
+      email,
     });
-    if (!response.data.emailExist) {
+
+    if (!user) {
       res.status(400).send({ error: "User is not authorised!" });
       return;
     }
@@ -161,11 +163,14 @@ app.post(`/api/save-calculation`, async (req, res) => {
     return;
   }
 
+  console.log(decoded.email);
   try {
-    const response = await axios.post("/api/auth/check-if-email-exist", {
-      email: decoded.email,
+    const email = decoded.email;
+    const user = await User.findOne({
+      email,
     });
-    if (!response.data.emailExist) {
+
+    if (!user) {
       res.status(400).send({ error: "User is not authorised!" });
       return;
     }
