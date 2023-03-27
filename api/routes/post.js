@@ -12,7 +12,7 @@ app.post("/api/calculate", async (req, res) => {
     "t1h2i3s4j5s6o0n9w8e7b4t6o7k9e3n2m4u5s@$b!ek3ept54sec23r2et3sot5h36atno34o!!$$cr312yp$!$!%^%^tthis&*!*user"
   );
   if (!decoded.email) {
-    res.status(400).send({ error: "User is not authorised!" });
+    res.status(400).send({ error: "User is not authorized!" });
     return;
   }
 
@@ -23,11 +23,11 @@ app.post("/api/calculate", async (req, res) => {
     });
 
     if (!user) {
-      res.status(400).send({ error: "User is not authorised!" });
+      res.status(400).send({ error: "User is not authorized!" });
       return;
     }
   } catch (error) {
-    res.status(400).send({ error: "User is not authorised!" });
+    res.status(400).send({ error: "User is not authorized!" });
     return;
   }
 
@@ -83,7 +83,7 @@ app.post("/api/calculate", async (req, res) => {
   // data = getProcessedData(weights.length, costs, names, weights);
   // console.log(data);
   const calculation = getCalculation(
-    weights.length - 1,
+    weights.length,
     weight,
     costs,
     names,
@@ -159,7 +159,7 @@ app.post(`/api/save-calculation`, async (req, res) => {
   );
 
   if (!decoded.email) {
-    res.status(400).send({ error: "User is not authorised!" });
+    res.status(400).send({ error: "User is not authorized!" });
     return;
   }
 
@@ -171,11 +171,11 @@ app.post(`/api/save-calculation`, async (req, res) => {
     });
 
     if (!user) {
-      res.status(400).send({ error: "User is not authorised!" });
+      res.status(400).send({ error: "User is not authorized!" });
       return;
     }
   } catch (error) {
-    res.status(400).send({ error: "User is not authorised!" });
+    res.status(400).send({ error: "User is not authorized!" });
     return;
   }
 
