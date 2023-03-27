@@ -19,11 +19,11 @@ app.get("/api/get-calculations", async (req, res) => {
       email: email,
     });
     if (!response.data.emailExist) {
-      res.status(400).send({ error: "User is not authorised!" });
+      res.status(400).send({ error: "User is not authorized!" });
       return;
     }
   } catch (error) {
-    res.status(400).send({ error: "User is not authorised!" });
+    res.status(400).send({ error: "User is not authorized!" });
     return;
   }
 
