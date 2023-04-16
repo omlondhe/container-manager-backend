@@ -31,10 +31,10 @@ app.post("/api/calculate", async (req, res) => {
     return;
   }
 
-  const weight = Number(req.body.weight);
+  const weight = req.body.weight;
   const names = req.body.names;
-  const costs = req.body.costs.map((cost) => Number(cost));
-  const weights = req.body.weights.map((weight) => Number(weight));
+  const costs = req.body.costs;
+  const weights = req.body.weights;
 
   const namesLength = names.length;
   const costsLength = costs.length;
